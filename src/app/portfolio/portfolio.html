@@ -1,0 +1,14 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">My Projects</h2>
+
+  <div class="row g-3">
+    <div class="col-md-6 col-lg-4" *ngFor="let project of projects">
+      <div class="card h-100 shadow">
+        <div class="card-body">
+          <h5 class="card-title">{{ project.name }}</h5>
+          <p class="card-text">{{ project.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
