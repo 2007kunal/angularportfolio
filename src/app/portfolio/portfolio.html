@@ -1,14 +1,15 @@
-<div class="container mt-4">
-  <h2 class="text-center mb-4">My Projects</h2>
+<div class="filter-buttons text-center mb-3">
+  <button (click)="selectedCategory='All'">All</button>
+  <button (click)="selectedCategory='Python'">Python</button>
+  <button (click)="selectedCategory='Angular'">Angular</button>
+  <button (click)="selectedCategory='ASP.NET'">ASP.NET</button>
+  <button (click)="selectedCategory='JavaScript'">JavaScript</button>
+  <button (click)="selectedCategory='Java'">Java</button>
+  <button (click)="selectedCategory='Web'">Web</button>
+</div>
 
-  <div class="row g-3">
-    <div class="col-md-6 col-lg-4" *ngFor="let project of projects">
-      <div class="card h-100 shadow">
-        <div class="card-body">
-          <h5 class="card-title">{{ project.name }}</h5>
-          <p class="card-text">{{ project.description }}</p>
-        </div>
-      </div>
-    </div>
+<div class="row g-3">
+  <div class=" col-md-6 col-lg-4 " *ngFor="let project of getFilteredProjects()">
+    <app-project-card [project]="project"></app-project-card>
   </div>
 </div>

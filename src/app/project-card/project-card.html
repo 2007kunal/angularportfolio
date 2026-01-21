@@ -1,16 +1,27 @@
-<div style="border:10px solid black; padding: 10px;">
-    <div style="max-width:350px; min-width:350px;">
-    <div class="card shadow text-center">
-    <div class="card-body">
-        <h5 class="card-title">{{project.name}}</h5>
-        <p class="card-text">{{project.description}}</p>
-        <button class="btn btn-primary"(click)="OpenProjectModal()">View More</button>
-    </div>
+<div class="project-card">
+  <h3>{{ project.name }}</h3>
+  <p>{{ project.description }}</p>
 
-    <div class="card-footer">
-        <div class="d-flex flex-wrap justify-content-center">
-            <div *ngFor="let tag of project.tags" class="tag me-2 mb-1" [style.background-color]="tag.color">{{tag}}</div>
-        </div>
-    </div>
+  <!-- LIVE DEMO BUTTON -->
+  <a *ngIf="project.projectLink"
+     [href]="project.projectLink"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="btn btn-primary mt-2">
+     Live Demo
+  </a>
 
+  <!-- IMAGE -->
+  <img
+    *ngIf="project.pictures && project.pictures.length > 0"
+    [src]="project.pictures[currentImageIndex]"
+    [alt]="project.name"
+  />
+
+  <!-- IMAGE CONTROLS -->
+  <div class="image-controls"
+       *ngIf="project.pictures.length > 1">
+    <button (click)="prevImage()">◀</button>
+    <button (click)="nextImage()">▶</button>
+  </div>
 </div>

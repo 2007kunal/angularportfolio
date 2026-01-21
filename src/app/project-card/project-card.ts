@@ -1,30 +1,31 @@
 import { Component, Input } from '@angular/core';
-import { Project } from '../_models/project';
 import { CommonModule } from '@angular/common';
-import { BsModalRef, BsModalService,ModalOptions} from 'ngx-bootstrap/modal';
-import { ProjectModal } from '../project-modal/project-modal';
+import { Project } from '../_models/project';
 
 @Component({
   selector: 'app-project-card',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './project-card.html',
-  styleUrls: ['./project-card.css'],
+  styleUrls: ['./project-card.css']
 })
 export class ProjectCard {
-@Input() project ! :  Project;
-bsModalRef?: BsModalRef;
-constructor(private modalService: BsModalService) {
+  @Input() project!: Project;
 
-}
-  OpenProjectModal(){
-    const modalOptions: ModalOptions<ProjectModal>= {
-      class:'modal-lg', 
-      initialState: {
-        project: this.project
-      }
+  currentImageIndex = 0;
 
-    };
-    this.bsModalRef = this.modalService.show(ProjectModal,modalOptions);
+  nextImage() {
+    if (!this.project?.pictures?.length) return;
+
+    this.currentImageIndex =
+      (this.currentImageIndex + 1) % this.project.pictures.length;
+  }
+
+  prevImage() {
+    if (!this.project?.pictures?.length) return;
+
+    this.currentImageIndex =
+      (this.currentImageIndex - 1 + this.project.pictures.length) %
+      this.project.pictures.length;
   }
 }
